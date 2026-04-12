@@ -93,6 +93,8 @@ function LandingScreen({ onJoin, onBrowse, savedName }) {
         {err && <p className={styles.error}>{err}</p>}
 
         <button className={styles.linkBtn} onClick={onBrowse}>Browse public rooms →</button>
+
+        <p className={styles.source}>Created by <a href="https://studio-bdt.github.io">Studio BDT</a></p>
         <button className={styles.darkModeToggle} onClick={() => { document.body.classList.toggle('dark'); console.log('Dark mode toggled');}}></button>
 
         
