@@ -21,7 +21,7 @@ function Avatar({ name, color }) {
 }
 
 function LandingScreen({ onJoin, onBrowse }) {
-  const [name, setName] = useState(props.savedName || '')
+  const [name, setName] = useState(savedName || '')
   const [code, setCode]       = useState('')
   const [rName, setRName]     = useState('')
   const [rTopic, setRTopic]   = useState('')
