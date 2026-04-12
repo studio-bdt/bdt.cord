@@ -453,3 +453,12 @@ body {
   color: #fff;
   flex-shrink: 0;
 }
+
+.source {
+  text-align: center;
+  color: #111;
+}
+
+.source a {
+  color: #111;
+}
