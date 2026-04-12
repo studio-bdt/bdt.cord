@@ -459,6 +459,10 @@ body {
   color: #111;
 }
 
+:global(body.dark) .source {
+  color: #aaa;
+}
+
 .source a {
   color: #111;
 }

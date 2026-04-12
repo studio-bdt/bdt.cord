@@ -452,4 +452,17 @@ body.dark .index-module__KWKY6G__msgBubbleMe {
   display: flex;
 }
 
+.index-module__KWKY6G__source {
+  text-align: center;
+  color: #111;
+}
+
+body.dark .index-module__KWKY6G__source {
+  color: #aaa;
+}
+
+.index-module__KWKY6G__source a {
+  color: #111;
+}
+
 /*# sourceMappingURL=pages_index_module_0466e_7.css.map*/
