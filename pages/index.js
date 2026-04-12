@@ -21,7 +21,7 @@ function Avatar({ name, color }) {
 }
 
 function LandingScreen({ onJoin, onBrowse }) {
-  const [name, setName]       = useState('')
+  const [name, setName] = useState(props.savedName || '')
   const [code, setCode]       = useState('')
   const [rName, setRName]     = useState('')
   const [rTopic, setRTopic]   = useState('')
@@ -262,11 +262,19 @@ function ChatScreen({ room, username, onLeave }) {
 export default function Home() {
   const [screen, setScreen]     = useState('landing')
   const [room, setRoom]         = useState(null)
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState(() => {
+    if (typeof window === 'undefined') return ''
+    return localStorage.getItem('chatrooms_username') || ''
+  })
+
+  function handleSetUsername(name) {
+    setUsername(name)
+    localStorage.setItem('chatrooms_username', name)
+  }
 
   function handleJoin(roomData, name) {
     setRoom(roomData)
-    setUsername(name)
+    handleSetUsername(name)
     setScreen('chat')
   }
 
@@ -277,9 +285,8 @@ export default function Home() {
         <link rel="icon" type="image/x-icon" href="images/bdt-logo.png"></link>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {screen === 'landing' && <LandingScreen onJoin={handleJoin} onBrowse={() => setScreen('browse')} />}
-      {screen === 'browse' && <BrowseScreen onBack={() => setScreen('landing')} onJoin={handleJoin} username={username} onSetUsername={setUsername} />}
-      {screen === 'chat' && room && <ChatScreen room={room} username={username} onLeave={() => { setRoom(null); setScreen('landing') }} />}
-    </>
+      {screen === 'landing' && <LandingScreen onJoin={handleJoin} onBrowse={() => setScreen('browse')} savedName={username} />}
+      {screen === 'browse' && <BrowseScreen onBack={() => setScreen('landing')} onJoin={handleJoin} username={username} onSetUsername={handleSetUsername} />}
+      {screen === 'chat' && room && <ChatScreen room={room} username={username} onLeave={() => { setRoom(null); setScreen('landing') }} />}    </>
   )
 }

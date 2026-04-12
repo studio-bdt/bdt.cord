@@ -10,3 +10,5 @@ export default async function handler(req, res) {
   }
   res.json({ deleted: codes })
 }
+
+// https://bdt-cord.vercel.app/api/admin/cleanup
