@@ -25,6 +25,7 @@
   display: grid;
   justify-content: center;
   margin: 15px;
+  flex-direction: row;
 }
 
 @media (max-width: 300px) {
