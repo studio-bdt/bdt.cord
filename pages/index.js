@@ -93,6 +93,8 @@ function LandingScreen({ onJoin, onBrowse, savedName }) {
         {err && <p className={styles.error}>{err}</p>}
 
         <button className={styles.linkBtn} onClick={onBrowse}>Browse public rooms →</button>
+
+        <p className={styles.source}>Created by <a href="https://studio-bdt.github.io">Studio BDT</a></p>
         <button className={styles.darkModeToggle} onClick={() => { document.body.classList.toggle('dark'); console.log('Dark mode toggled');}}></button>
 
         
@@ -177,7 +179,13 @@ function ChatScreen({ room, username, onLeave }) {
       body: JSON.stringify({ code: room.code, author: username, action: 'join' }),
     })
 
+    function handleUnload() {
+      navigator.sendBeacon('/api/messages/presence', JSON.stringify({ code: room.code, author: username, action: 'leave' }))
+    }
+    window.addEventListener('beforeunload', handleUnload)
+
     return () => {
+      window.removeEventListener('beforeunload', handleUnload)
       fetch('/api/messages/presence', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: room.code, author: username, action: 'leave' }),
