@@ -159,8 +159,9 @@ body {
 }
 
 :global(body.dark) .darkModeToggle {
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTodkh1G1q2E3vJ0bsWysVXB66aBRKCEsj_-A&s');
+  background-image: url('https://cdn-icons-png.flaticon.com/512/54/54241.png');
   background-size: cover;
+  filter: invert(100%);
 }
 
 :global(body.dark) .input {
